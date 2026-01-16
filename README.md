@@ -100,9 +100,9 @@
    - Go to [vercel.com](https://vercel.com)
    - Import repository: `sammybilly57-wq/chess_analysis`
    - Configure:
-     - **Root Directory**: `frontend`
-     - **Build Command**: `npm run build`
-     - **Output Directory**: `.next`
+     - **Root Directory**: Leave empty (Project Root) - *Important for loading backend configuration*
+     - **Framework Preset**: Other (or Next.js if it detects it, but ensure Root is project root)
+     - **Build Command**: If prompted, usage of `vercel.json` should handle the multi-project structure.
    - Deploy
 
 3. **API Configuration**

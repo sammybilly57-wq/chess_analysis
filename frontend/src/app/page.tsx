@@ -20,12 +20,21 @@ export default function Home() {
         },
         body: JSON.stringify({ pgn }),
       });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Server returned ${response.status}: ${errorText.slice(0, 100)}`);
+      }
+
       const data = await response.json();
       console.log("Analysis result:", data);
       setResult(data);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error analyzing PGN:", error);
-      setResult({ status: "error", message: "Failed to connect to backend" });
+      setResult({ 
+        status: "error", 
+        message: error.message || "Failed to connect to backend" 
+      });
     } finally {
       setLoading(false);
     }
