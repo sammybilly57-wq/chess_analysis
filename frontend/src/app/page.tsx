@@ -6,10 +6,9 @@ export default function Home() {
   const [pgn, setPgn] = useState("");
 
   const handleSubmit = async () => {
-    // For now, just log the PGN. We will connect to the backend later.
     console.log("PGN submitted:", pgn);
     try {
-      const response = await fetch("http://localhost:8000/analyse", {
+      const response = await fetch("/api/analyse", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -17,7 +16,7 @@ export default function Home() {
         body: JSON.stringify({ pgn }),
       });
       const data = await response.json();
-      console.log(data);
+      console.log("Analysis result:", data);
     } catch (error) {
       console.error("Error analyzing PGN:", error);
     }

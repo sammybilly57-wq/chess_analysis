@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import os
 
 app = FastAPI()
 
-# Add CORS middleware
+# Add CORS middleware - allow both local development and production
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000", "https://*.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -22,10 +23,10 @@ def analyse(pgn: Pgn):
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World"}
+    return {"status": "ok", "message": "ChessLens API is running"}
 
 # Vercel serverless function handler
-handler = app
+app = app
 
 if __name__ == "__main__":
     import uvicorn

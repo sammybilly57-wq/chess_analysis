@@ -1,0 +1,12 @@
+# Web framework
+fastapi==0.128.0
+uvicorn[standard]==0.34.0
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Pydantic for data validation
+pydantic==2.10.0
+
+# CORS handling (already included in FastAPI)
+# starlette==0.45.0
